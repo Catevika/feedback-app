@@ -23,22 +23,20 @@ function FeedbackForm() {
 
 	const handleTextChange = (e) => {
 		if (text === '') {
-			setBtnDisabled(true);
 			setMessage(null);
-		} else if (text !== '' && text.trim().length <= 10) {
-			setBtnDisabled(true);
+		} else if (e.target.value !== '' && e.target.value.trim().length < 10) {
 			setMessage('Text must be at least 10 characters');
-		} else {
 			setBtnDisabled(false);
+		} else {
 			setMessage(null);
+			setBtnDisabled(false);
 		}
-
 		setText(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (text.trim().length > 10) {
+		if (text.trim().length > 9) {
 			const newFeedback = {
 				text,
 				rating
